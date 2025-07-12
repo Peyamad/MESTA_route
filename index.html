@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>給電ルートマップ</title>
+  <title>給電車現在地</title>
   <style>
     #map {
       height: 100vh;
@@ -46,7 +46,9 @@
         position: origin,
         map: map,
         title: "給電車現在地",
-
+        icon: {
+          url: "https://maps.google.com/mapfiles/ms/icons/green-dot.png"
+        }
       });
 
       // マーカー（給電場所）
