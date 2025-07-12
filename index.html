@@ -20,9 +20,17 @@
      // 　      const origin = { lat: 36.081921, lng: 140.114283 }; // 給電車現在地
      // const destination = { lat: 36.029804, lng: 140.309623 }; // 給電場所
 
-        const origin = url.searchParams.get("origin");  // 緯度,経度
-        const destination = url.searchParams.get("destination");
+    // 文字列として取得（例: "36.081921,140.114283"）
+    const originStr = url.searchParams.get("origin");
+    const destinationStr = url.searchParams.get("destination");
 
+    // 分割して数値に変換
+    const [originLat, originLng] = originStr.split(',').map(Number);
+    const [destLat, destLng] = destinationStr.split(',').map(Number);
+
+    // LatLng オブジェクトに変換
+    const origin = { lat: originLat, lng: originLng };
+    const destination = { lat: destLat, lng: destLng };
         if (!origin || !destination) {
           alert("パラメータが不足しています");
           return;
