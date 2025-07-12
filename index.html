@@ -15,8 +15,14 @@
 
   <script>
     function initMap() {
-      const origin = { lat: 36.081921, lng: 140.114283 }; // 給電車現在地
-      const destination = { lat: 36.029804, lng: 140.309623 }; // 給電場所
+        const url = new URL(window.location.href);
+        const origin = url.searchParams.get("origin");  // 緯度,経度
+        const destination = url.searchParams.get("destination");
+
+        if (!origin || !destination) {
+          alert("パラメータが不足しています");
+          return;
+        }
 
       const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 11,
