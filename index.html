@@ -75,13 +75,23 @@
         }
       });
 
+/**
       // 経路描画
       const directionsService = new google.maps.DirectionsService();
       const directionsRenderer = new google.maps.DirectionsRenderer({
         map: map,
         suppressMarkers: true // A/Bを非表示にして自前マーカーを使用
       });
+*/
+      
+  // DirectionsRenderer に経路を描画
+  const directionsRenderer = new google.maps.DirectionsRenderer({
+    map: map,
+    suppressMarkers: true
+  });
 
+  directionsRenderer.setDirections(data);
+    /**  
       directionsService.route({
         origin: origin,
         destination: destination,
@@ -97,6 +107,7 @@
           console.error("ルート取得失敗:", status);
         }
       });
+    */
     }
   </script>
 
