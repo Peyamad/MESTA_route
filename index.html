@@ -16,7 +16,7 @@
   <script>
     async function initMap() {
   　 const url = new URL(window.location.href);
-/**
+
     // 文字列として取得（例: "36.081921,140.114283"）
     const originStr = url.searchParams.get("origin");
     const destinationStr = url.searchParams.get("destination");
@@ -37,22 +37,6 @@
         zoom: 11,
         center: origin,
       });
-*/
-  const origin = url.searchParams.get("origin");
-  const destination = url.searchParams.get("destination");
-  const gasApiUrl = `https://script.google.com/macros/s/AKfycbwafRmasH-8_GBZGja9ekDUTQtT20X5TMJPZWiyQeDxxeOrGrUisLZTNwHuXa58afKT/exec?origin=${origin}&destination=${destination}`;
-  const res = await fetch(gasApiUrl);
-  const data = await res.json();
-
-  const [oLat, oLng] = origin.split(',').map(Number);
-  const [dLat, dLng] = destination.split(',').map(Number);
-  const originLatLng = { lat: oLat, lng: oLng };
-  const destinationLatLng = { lat: dLat, lng: dLng };
-
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 11,
-    center: originLatLng,
-  });
 
       
       // マーカー（給電車）
@@ -75,23 +59,14 @@
         }
       });
 
-/**
+
       // 経路描画
       const directionsService = new google.maps.DirectionsService();
       const directionsRenderer = new google.maps.DirectionsRenderer({
         map: map,
         suppressMarkers: true // A/Bを非表示にして自前マーカーを使用
       });
-*/
-      
-  // DirectionsRenderer に経路を描画
-  const directionsRenderer = new google.maps.DirectionsRenderer({
-    map: map,
-    suppressMarkers: true
-  });
-
-  directionsRenderer.setDirections(data);
-    /**  
+  
       directionsService.route({
         origin: origin,
         destination: destination,
@@ -107,12 +82,12 @@
           console.error("ルート取得失敗:", status);
         }
       });
-    */
+
     }
   </script>
 
 <!-- Maps APIキー不要！ -->
-<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyA97ONsTKVEOzc5X8oO0Yw3lx-UeUrDGFY" async defer></script>
 </body>
 </html>
 
